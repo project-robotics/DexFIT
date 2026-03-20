@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DexFIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #fff;
+      color: #222;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: #1a56db; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO / TITLE BLOCK
+    ═══════════════════════════════════════ */
+    .hero {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 span {
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .authors {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 0.4rem;
+    }
+
+    .affiliations {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 1.6rem;
+    }
+
+    /* link buttons */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border: 1.5px solid #ccc;
+      color: #333;
+      background: #fff;
+      transition: border-color 0.15s, background 0.15s;
+      text-decoration: none;
+    }
+    .link-btn:hover { border-color: #1a56db; color: #1a56db; text-decoration: none; }
+    .link-btn .icon { font-size: 1rem; }
+
+    /* ═══════════════════════════════════════
+       TEASER
+    ═══════════════════════════════════════ */
+    .teaser-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .teaser-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 6px;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTIONS
+    ═══════════════════════════════════════ */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.4rem;
+      color: #444;
+    }
+
+    p { margin-bottom: 0.9rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .abstract-text {
+      max-width: 820px;
+      margin: 0 auto;
+      font-size: 0.97rem;
+      color: #333;
+      line-height: 1.85;
+      text-align: justify;
+    }
+
+    /* ═══════════════════════════════════════
+       VIDEO
+    ═══════════════════════════════════════ */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #f4f4f4;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+    }
+    .video-wrap video,
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      object-fit: cover;
+    }
+    /* placeholder shown when no video is provided */
+    .video-wrap .vph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #aaa;
+      font-size: 0.82rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .video-wrap .vph strong { color: #888; font-size: 0.92rem; }
+    .video-wrap .vph code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      color: #1a56db;
+    }
+
+    .video-caption {
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+      margin-top: 0.7rem;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════
+       GRID LAYOUTS
+    ═══════════════════════════════════════ */
+    .col-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .col-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    /* ═══════════════════════════════════════
+       IMAGE
+    ═══════════════════════════════════════ */
+    .img-wrap {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+      background: #f4f4f4;
+    }
+    .img-wrap img { width: 100%; display: block; }
+    .img-ph {
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      color: #aaa;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .img-ph strong { color: #888; }
+    .img-ph code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.73rem;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      color: #1a56db;
+    }
+    .img-caption {
+      font-size: 0.82rem;
+      color: #888;
+      text-align: center;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════
+       SPEC TABLE (inline)
+    ═══════════════════════════════════════ */
+    .spec {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.87rem;
+    }
+    .spec tr { border-bottom: 1px solid #eee; }
+    .spec tr:last-child { border-bottom: none; }
+    .spec td { padding: 0.5rem 0.2rem; }
+    .spec td:first-child { color: #666; width: 48%; }
+    .spec td:last-child { font-family: 'Courier New', monospace; font-size: 0.82rem; color: #222; }
+
+    /* ═══════════════════════════════════════
+       RESULTS TABLE
+    ═══════════════════════════════════════ */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    table.result {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.87rem;
+    }
+    table.result thead tr { background: #f8f8f8; }
+    table.result thead th {
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #888;
+      border-bottom: 1px solid #e0e0e0;
+      white-space: nowrap;
+    }
+    table.result tbody tr { border-bottom: 1px solid #eee; }
+    table.result tbody tr:last-child { border-bottom: none; }
+    table.result tbody tr:hover { background: #fafafa; }
+    table.result tbody tr.best-row { background: #eff6ff; }
+    table.result tbody tr.best-row:hover { background: #dbeafe; }
+    table.result td {
+      padding: 0.65rem 1rem;
+      color: #555;
+      white-space: nowrap;
+    }
+    table.result td:first-child { color: #222; font-weight: 500; }
+    .mono { font-family: 'Courier New', monospace; font-size: 0.83rem; }
+    .bold { font-weight: 700; color: #111; }
+    .ok { color: #16a34a; }
+    .no { color: #dc2626; }
+
+    /* ═══════════════════════════════════════
+       SECTION DIVIDER (task)
+    ═══════════════════════════════════════ */
+    .task-block { margin-bottom: 3rem; }
+    .task-header {
+      border-left: 3px solid #1a56db;
+      padding-left: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .task-header h3 { margin-bottom: 0.2rem; }
+    .task-header p { font-size: 0.88rem; color: #666; margin: 0; }
+
+    /* ablation label */
+    .ab-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #888;
+      text-align: center;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #aaa;
+      border-top: 1px solid #eee;
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .col-2, .col-3 { grid-template-columns: 1fr; }
+      h1 { font-size: 1.5rem; }
+      section { padding: 2.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     TITLE BLOCK
+════════════════════════════════════ -->
+<div class="hero">
+  <div class="container">
+
+    <h1>
+      DexFIT: <span>Force Informed Transfer for Dexterous Manipulation</span><br>
+      using Kinematically Isomorphic Tactile Glove
+    </h1>
+
+    <p class="authors">Anonymous Author(s)</p>
+    <p class="affiliations">Anonymous Institution(s)</p>
+
+    <div class="link-buttons">
+      <a href="paper.pdf" class="link-btn">
+        <span class="icon">📄</span> Paper
+      </a>
+      <a href="https://anonymous.4open.science/r/DexFIT-478C/" class="link-btn">
+        <span class="icon">💻</span> Code
+      </a>
+    </div>
+
+    <!-- ★ TEASER 교체: img src="" 로 -->
+    <div class="teaser-wrap">
+      <!--
+        ★ 교체:
+        <img src="static/images/teaser.png" alt="DexFIT overview">
+      -->
+      <div class="img-wrap">
+        <div class="img-ph" style="aspect-ratio:16/7;">
+          <strong>System Overview Figure</strong>
+          <p>논문 Fig. 1 — 글러브 + 로봇핸드 + 파이프라인</p>
+          <code>static/images/teaser.png</code>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     ABSTRACT
+════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Abstract</h2>
+    <div class="abstract-text">
+      <p>
+        Acquiring high-quality demonstration data for dexterous robotic hand manipulation remains challenging
+        because conventional methods either lose critical force information during collection or require complex,
+        error-prone retargeting processes. In this paper, we propose <strong>DexFIT</strong>
+        (Dexterous Force-Informed Transfer), a system designed to transfer human contact forces to a robotic
+        hand in real-time through a kinematically isomorphic wearable glove equipped with integrated fingertip
+        tactile sensors. The glove's 16-degree-of-freedom (DoF) joint structure is mechanically identical to
+        the target robot hand, thereby eliminating the need for retargeting entirely.
+      </p>
+      <p>
+        During data collection, a <strong>Force Generation (FG)</strong> module converts tactile readings from
+        the operator's fingertips into supplementary joint angle commands, enabling the robot hand to generate
+        contact forces proportional to the human's applied pressure. For autonomous deployment, an
+        <strong>Adaptive Force Control (AFC)</strong> module monitors task progress via the robot's onboard
+        tactile sensors and dynamically adjusts grasp forces. We trained a vision-free Diffusion Policy on
+        the collected proprioceptive data and evaluated the system on a light bulb rotation task.
+        Experimental results show that DexFIT achieves a <strong>100% task completion rate</strong> in its
+        optimal configuration, with a 34.5% reduction in task completion time and 16% reduction in energy
+        consumption compared to position-only isomorphic control.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     MAIN DEMO VIDEO
+════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Introduction to DexFIT</h2>
+
+    <!--
+      ★ 영상 넣는 법 ①: 로컬 mp4 파일 (GitHub에 올린 경우)
+        <div class="video-wrap">
+          <video autoplay muted loop playsinline>
+            <source src="static/videos/overview.mp4" type="video/mp4">
+          </video>
+        </div>
+
+      ★ 영상 넣는 법 ②: YouTube
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    -->
+    <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
+      <div class="vph">
+        <strong>Overview Video</strong>
+        <p>글러브 착용 → 전구 회전 teleoperation → 자율 배포 전체 흐름</p>
+        <code>static/videos/overview.mp4</code>
+      </div>
+    </div>
+    <p class="video-caption">Full system demonstration: data collection with Force Generation and autonomous deployment with Adaptive Force Control.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     HARDWARE DESIGN
+════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Hardware Design</h2>
+
+    <!-- Glove -->
+    <div class="task-block">
+      <div class="task-header">
+        <h3>DexFIT Glove — 16-DoF Kinematically Isomorphic</h3>
+        <p>Joint structure mechanically identical to the target robot hand. Direct 1:1 transfer, no retargeting.</p>
+      </div>
+
+      <div class="col-2">
+        <div>
+          <!--
+            ★ 교체: <img src="static/images/glove_overview.png" alt="DexFIT Glove">
+          -->
+          <div class="img-wrap">
+            <div class="img-ph">
+              <strong>Glove Photo / CAD</strong>
+              <p>논문 Fig. 2(b)</p>
+              <code>static/images/glove_overview.png</code>
+            </div>
+          </div>
+          <p class="img-caption">16-DoF wearable glove with potentiometer encoders and fingertip tactile modules</p>
+        </div>
+
+        <div>
+          <table class="spec">
+            <tr><td>DoF</td><td>16 (4 fingers × 4)</td></tr>
+            <tr><td>Joint encoder</td><td>Alps RDC506018A (potentiometer)</td></tr>
+            <tr><td>ADC resolution</td><td>12-bit MCP3208 (~0.08°)</td></tr>
+            <tr><td>Angle accuracy</td><td>R²=0.998, RMSE=2.59°</td></tr>
+            <tr><td>Tactile modules</td><td>3 fingers × 7 BMP384</td></tr>
+            <tr><td>Cover material</td><td>Ecoflex-50, 3 mm</td></tr>
+            <tr><td>Update rate</td><td>90 Hz (SPI)</td></tr>
+            <tr><td>MCU</td><td>ATmega2560</td></tr>
+            <tr><td>Weight</td><td>~180 g</td></tr>
+            <tr><td>Joint range</td><td>−5° to +95° (hard stop)</td></tr>
+            <tr><td>Link material</td><td>PLA + Onyx nylon composite</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Joint tracking video -->
+      <div style="margin-top: 1.5rem;">
+        <!--
+          ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/joint_tracking.mp4"></video>
+        -->
+        <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
+          <div class="vph">
+            <strong>Joint Tracking Video</strong>
+            <p>글러브 손동작 → 로봇핸드 실시간 동기화 (엄지/검지 각 관절 추종)</p>
+            <code>static/videos/joint_tracking.mp4</code>
+          </div>
+        </div>
+        <p class="video-caption">Joint tracking comparison during synchronized tap motions (thumb and index). RMSE and time delay annotated per joint.</p>
+      </div>
+    </div>
+
+    <!-- Tactile Sensor -->
+    <div class="task-block">
+      <div class="task-header">
+        <h3>Fingertip Tactile Sensor</h3>
+        <p>Barometric tactile modules on 3 fingertips (thumb, index, middle). 7 taxels each, flexible PCB, Ecoflex-50 cover.</p>
+      </div>
+
+      <div class="col-2">
+        <div>
+          <!--
+            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/tactile_live.mp4"></video>
+          -->
+          <div class="video-wrap">
+            <div class="vph">
+              <strong>Tactile Sensor Live Data</strong>
+              <p>7-taxel 히트맵 — 손가락으로 누를 때 각 센서 실시간 반응</p>
+              <code>static/videos/tactile_live.mp4</code>
+            </div>
+          </div>
+          <p class="video-caption">Real-time 7-taxel pressure map during fingertip contact</p>
+        </div>
+
+        <div>
+          <!--
+            ★ 교체: <img src="static/images/tactile_detail.png" alt="Tactile sensor">
+          -->
+          <div class="img-wrap" style="margin-bottom: 0.8rem;">
+            <div class="img-ph">
+              <strong>Sensor Structure</strong>
+              <p>BMP384 배열 + Ecoflex-50 레이어 단면도</p>
+              <code>static/images/tactile_detail.png</code>
+            </div>
+          </div>
+          <table class="spec">
+            <tr><td>Sensing IC</td><td>BMP384 (Bosch Sensortec)</td></tr>
+            <tr><td>Principle</td><td>Piezoresistive barometric</td></tr>
+            <tr><td>Taxels per finger</td><td>7 (7 mm spacing)</td></tr>
+            <tr><td>Cover</td><td>Ecoflex-50, 3 mm thick</td></tr>
+            <tr><td>Response time</td><td>&lt;50 ms (47 ms measured)</td></tr>
+            <tr><td>Force range</td><td>0–6.2 N</td></tr>
+            <tr><td>PCB type</td><td>Flexible PCB</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robot Hand -->
+    <div class="task-block" style="margin-bottom: 0;">
+      <div class="task-header">
+        <h3>Multi-Sensory Robot Hand</h3>
+        <p>16-DoF, 60 barometric tactile taxels, 12 kinesthetic F/T sensors, magnetic encoders. EtherCAT @ 1 kHz.</p>
+      </div>
+
+      <div class="col-2">
+        <div>
+          <!--
+            ★ 교체: <img src="static/images/robot_hand.png" alt="Robot hand">
+          -->
+          <div class="img-wrap">
+            <div class="img-ph">
+              <strong>Robot Hand Photo</strong>
+              <p>논문 Fig. 2(a) — 16-DoF 멀티센서 로봇핸드</p>
+              <code>static/images/robot_hand.png</code>
+            </div>
+          </div>
+          <p class="img-caption">16-DoF multi-sensory robotic hand with 60 tactile taxels and 12 kinesthetic sensors</p>
+        </div>
+
+        <div>
+          <table class="spec">
+            <tr><td>DoF</td><td>16 (4 fingers × 4)</td></tr>
+            <tr><td>Tactile sensors</td><td>60 taxels (15/finger), 250 Hz</td></tr>
+            <tr><td>Tactile range</td><td>1.5 N capacity, 1.5 mN sensitivity</td></tr>
+            <tr><td>Kinesthetic F/T</td><td>12 × 3-axis (3/finger)</td></tr>
+            <tr><td>F_z range</td><td>±200 N, T_x/T_y ±1 N·m, 300 Hz</td></tr>
+            <tr><td>Position sensor</td><td>Magnetic encoder × 16</td></tr>
+            <tr><td>Communication</td><td>EtherCAT @ 1 kHz</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FORCE TRANSFER MECHANISM
+════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Force Transfer Mechanism</h2>
+
+    <!--
+      ★ 교체: <img src="static/images/pipeline.png" alt="Pipeline">
+    -->
+    <div class="img-wrap" style="max-width:860px; margin: 0 auto 1.2rem;">
+      <div class="img-ph" style="aspect-ratio:16/5;">
+        <strong>Pipeline Figure</strong>
+        <p>논문 Fig. 5 — 데이터 수집 파이프라인 + Diffusion Policy + AFC</p>
+        <code>static/images/pipeline.png</code>
+      </div>
+    </div>
+    <p class="img-caption" style="margin-bottom: 2rem;">Left: data acquisition with Force Generator. Right: Diffusion Policy with Adaptive Force Controller.</p>
+
+    <div class="col-2">
+      <div>
+        <h3>① Force Generation (Data Collection)</h3>
+        <p style="font-size:0.92rem; color:#444;">
+          When the operator contacts an object, the maximum taxel reading across 7 sensors drives additional
+          joint flexion on the robot hand. The robot squeezes harder than the glove angle dictates —
+          generating contact forces proportional to applied human pressure.
+        </p>
+        <p style="font-size:0.88rem; color:#666; font-family:'Courier New',monospace; background:#f8f8f8; padding:0.7rem 1rem; border-radius:6px; border:1px solid #e0e0e0; margin-top:0.8rem;">
+          θ_cmd = θ_glove + K_j · (T_f / T_scale)<br>
+          K = 30 (DIP/PIP),  K = 15 (MCP)<br>
+          RMSE = 0.63 N,  Pearson r &gt; 0.93
+        </p>
+      </div>
+
+      <div>
+        <h3>② Adaptive Force Control (Deployment)</h3>
+        <p style="font-size:0.92rem; color:#444;">
+          At inference, the robot's onboard tactile sensors detect stalls. A velocity controller increases
+          DIP joint flexion when rotation slows, compensating for the increasing friction beyond 300° of
+          bulb rotation.
+        </p>
+        <p style="font-size:0.88rem; color:#666; font-family:'Courier New',monospace; background:#f8f8f8; padding:0.7rem 1rem; border-radius:6px; border:1px solid #e0e0e0; margin-top:0.8rem;">
+          e_ω = clip(10 − ω, −10, 10)<br>
+          g_AFC = max(0, e_ω / 10 · G_max)<br>
+          G_max = 500 encoder counts
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     EXPERIMENTS
+════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Experiment: Light Bulb Rotation</h2>
+    <p style="text-align:center; color:#666; font-size:0.92rem; max-width:640px; margin: 0 auto 2.5rem;">
+      In-hand rotation task: reach 300° cumulative rotation within 60 s against increasing socket friction.
+      Vision-free. 5 trials per condition, 10 demonstrations each.
+    </p>
+
+    <!-- Experiment setup -->
+    <div class="col-2" style="margin-bottom: 2.5rem;">
+      <div>
+        <!--
+          ★ 교체: <img src="static/images/experiment_setup.png" alt="Setup">
+        -->
+        <div class="img-wrap">
+          <div class="img-ph">
+            <strong>Experiment Setup</strong>
+            <p>로봇핸드 + 전구소켓 + 6축 F/T + RGB 카메라 (Fig. 7a)</p>
+            <code>static/images/experiment_setup.png</code>
+          </div>
+        </div>
+        <p class="img-caption">Setup: RGB camera tracks bulb angle; 6-axis F/T sensor logs applied forces</p>
+      </div>
+      <div>
+        <!--
+          ★ 교체: <img src="static/images/torque_plot.png" alt="Torque profile">
+        -->
+        <div class="img-wrap">
+          <div class="img-ph">
+            <strong>Torque & Rotation Profile</strong>
+            <p>Z-axis torque + 누적 회전각 그래프 (Fig. 7b)</p>
+            <code>static/images/torque_plot.png</code>
+          </div>
+        </div>
+        <p class="img-caption">AFC kicks in as friction increases past 300°, maintaining rotation through the high-friction phase</p>
+      </div>
+    </div>
+
+    <!-- DexFIT demo video -->
+    <div class="task-block">
+      <div class="task-header">
+        <h3>DexFIT Deployment (FG + AFC)</h3>
+        <p>100% success rate — autonomous light bulb rotation with force-informed policy and adaptive force control.</p>
+      </div>
+      <!--
+        ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/dexfit_deploy.mp4"></video>
+      -->
+      <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
+        <div class="vph">
+          <strong>DexFIT Autonomous Deployment</strong>
+          <p>FG + AFC 조합 — 100% 성공 (5/5)</p>
+          <code>static/videos/dexfit_deploy.mp4</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ablation side-by-side -->
+    <div class="task-block">
+      <div class="task-header">
+        <h3>Ablation: Data Collection Modes</h3>
+        <p>Three teleoperation conditions compared side-by-side during data collection.</p>
+      </div>
+
+      <div class="col-3">
+        <div>
+          <p class="ab-label">Teleoperation (no contact)</p>
+          <!--
+            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/teleop_only.mp4"></video>
+          -->
+          <div class="video-wrap">
+            <div class="vph">
+              <strong>Teleoperation</strong>
+              <p>공중에서 제스처 — 전구 접촉 없음</p>
+              <code>teleop_only.mp4</code>
+            </div>
+          </div>
+          <p class="video-caption">10/21 success during collection. Policy fails at deployment (0/5).</p>
+        </div>
+
+        <div>
+          <p class="ab-label">Contact (FG off)</p>
+          <!--
+            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/contact_no_fg.mp4"></video>
+          -->
+          <div class="video-wrap">
+            <div class="vph">
+              <strong>Contact Teleoperation</strong>
+              <p>접촉은 있지만 Force Generation 비활성</p>
+              <code>contact_no_fg.mp4</code>
+            </div>
+          </div>
+          <p class="video-caption">Position-only transfer. Policy achieves only 20% success (1/5) without AFC.</p>
+        </div>
+
+        <div>
+          <p class="ab-label" style="color:#1a56db;">FG Teleoperation (Ours)</p>
+          <!--
+            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/fg_teleop.mp4"></video>
+          -->
+          <div class="video-wrap">
+            <div class="vph">
+              <strong>FG Teleoperation</strong>
+              <p>촉각→힘 변환 활성 — 로봇이 꽉 잡으며 회전</p>
+              <code>fg_teleop.mp4</code>
+            </div>
+          </div>
+          <p class="video-caption">26.24 s avg, 15.07 deg/s. Force-informed policy achieves 100% success.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ablation AFC -->
+    <div class="task-block">
+      <div class="task-header">
+        <h3>Ablation: Adaptive Force Control at Deployment</h3>
+        <p>Comparing deployment with and without AFC on force-informed data.</p>
+      </div>
+
+      <div class="col-2">
+        <div>
+          <p class="ab-label">FG Teleoperation — AFC off</p>
+          <!--
+            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/fg_no_afc.mp4"></video>
+          -->
+          <div class="video-wrap">
+            <div class="vph">
+              <strong>FG, no AFC</strong>
+              <p>300° 이후 마찰 증가 시 힘 부족으로 종종 멈춤</p>
+              <code>fg_no_afc.mp4</code>
+            </div>
+          </div>
+          <p class="video-caption">100% success, but slower (31.48 s) — stalls occasionally near end.</p>
+        </div>
+
+        <div>
+          <p class="ab-label" style="color:#1a56db;">DexFIT (FG + AFC) — Ours</p>
+          <!--
+            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/fg_with_afc.mp4"></video>
+          -->
+          <div class="video-wrap">
+            <div class="vph">
+              <strong>FG + AFC</strong>
+              <p>300° 이후 AFC가 추가 힘 공급 → 부드럽게 완료</p>
+              <code>fg_with_afc.mp4</code>
+            </div>
+          </div>
+          <p class="video-caption">100% success, 26.45 s, 9.107 deg/s — best overall efficiency.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Table -->
+    <h3 style="margin-bottom: 0.8rem;">Quantitative Results</h3>
+    <div class="table-wrap">
+      <table class="result">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Contact</th>
+            <th>FG</th>
+            <th>AFC</th>
+            <th>Success (%)</th>
+            <th>Time (s)</th>
+            <th>Ang. Vel. (deg/s)</th>
+            <th>Energy (kJ)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Teleoperation</td>
+            <td class="no mono">✗</td><td class="no mono">✗</td><td class="no mono">✗</td>
+            <td class="no mono">0</td><td class="mono">—</td><td class="mono">1.186</td><td class="mono">—</td>
+          </tr>
+          <tr>
+            <td>Teleoperation (AFC)</td>
+            <td class="no mono">✗</td><td class="no mono">✗</td><td class="ok mono">✓</td>
+            <td class="no mono">0</td><td class="mono">—</td><td class="mono">3.881</td><td class="mono">—</td>
+          </tr>
+          <tr>
+            <td>Contact (AFC off)</td>
+            <td class="ok mono">✓</td><td class="no mono">✗</td><td class="no mono">✗</td>
+            <td class="mono">20</td><td class="mono">40.39</td><td class="mono">4.374</td><td class="mono">571.2</td>
+          </tr>
+          <tr>
+            <td>Contact (AFC on)</td>
+            <td class="ok mono">✓</td><td class="no mono">✗</td><td class="ok mono">✓</td>
+            <td class="mono">100</td><td class="mono">41.86</td><td class="mono">6.603</td><td class="mono">576.3</td>
+          </tr>
+          <tr>
+            <td>FG (AFC off)</td>
+            <td class="ok mono">✓</td><td class="ok mono">✓</td><td class="no mono">✗</td>
+            <td class="mono">100</td><td class="mono">31.48</td><td class="mono">7.366</td><td class="mono">543.9</td>
+          </tr>
+          <tr class="best-row">
+            <td><strong>DexFIT — Ours</strong></td>
+            <td class="ok mono">✓</td><td class="ok mono">✓</td><td class="ok mono">✓</td>
+            <td class="bold mono">100</td><td class="bold mono">26.45</td><td class="bold mono">9.107</td><td class="bold mono">479.9</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer>
+  <p>DexFIT · Anonymous Submission · <a href="https://anonymous.4open.science/r/DexFIT-478C/">Code</a></p>
+</footer>
+
+</body>
+</html>
