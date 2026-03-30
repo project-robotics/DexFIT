@@ -385,18 +385,9 @@
       </a>
     </div> -->
 
-    <!-- ★ TEASER 교체: img src="" 로 -->
     <div class="teaser-wrap">
-      <!--
-        ★ 교체:
-        <img src="static/images/teaser.png" alt="DexFIT overview">
-      -->
       <div class="img-wrap">
-        <div class="img-ph" style="aspect-ratio:16/7;">
-          <strong>System Overview Figure</strong>
-          <p>논문 Fig. 1 — 글러브 + 로봇핸드 + 파이프라인</p>
-          <code>static/images/teaser.png</code>
-        </div>
+        <img src="static/images/teaser.png" alt="DexFIT overview">
       </div>
     </div>
 
@@ -441,26 +432,10 @@
   <div class="container">
     <h2>Introduction to DexFIT</h2>
 
-    <!--
-      ★ 영상 넣는 법 ①: 로컬 mp4 파일 (GitHub에 올린 경우)
-        <div class="video-wrap">
-          <video autoplay muted loop playsinline>
-            <source src="static/videos/overview.mp4" type="video/mp4">
-          </video>
-        </div>
-
-      ★ 영상 넣는 법 ②: YouTube
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-    -->
     <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
-      <div class="vph">
-        <strong>Overview Video</strong>
-        <p>글러브 착용 → 전구 회전 teleoperation → 자율 배포 전체 흐름</p>
-        <code>static/videos/overview.mp4</code>
-      </div>
+      <video autoplay muted loop playsinline>
+        <source src="static/videos/overview.mp4" type="video/mp4">
+      </video>
     </div>
     <p class="video-caption">Full system demonstration: data collection with Force Generation and autonomous deployment with Adaptive Force Control.</p>
   </div>
@@ -482,15 +457,8 @@
 
       <div class="col-2">
         <div>
-          <!--
-            ★ 교체: <img src="static/images/glove_overview.png" alt="DexFIT Glove">
-          -->
           <div class="img-wrap">
-            <div class="img-ph">
-              <strong>Glove Photo / CAD</strong>
-              <p>논문 Fig. 2(b)</p>
-              <code>static/images/glove_overview.png</code>
-            </div>
+            <img src="static/images/glove_overview.png" alt="DexFIT Glove">
           </div>
           <p class="img-caption">16-DoF wearable glove with potentiometer encoders and fingertip tactile modules</p>
         </div>
@@ -514,15 +482,10 @@
 
       <!-- Joint tracking video -->
       <div style="margin-top: 1.5rem;">
-        <!--
-          ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/joint_tracking.mp4"></video>
-        -->
         <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
-          <div class="vph">
-            <strong>Joint Tracking Video</strong>
-            <p>글러브 손동작 → 로봇핸드 실시간 동기화 (엄지/검지 각 관절 추종)</p>
-            <code>static/videos/joint_tracking.mp4</code>
-          </div>
+          <video autoplay muted loop playsinline>
+            <source src="static/videos/joint_tracking.mp4" type="video/mp4">
+          </video>
         </div>
         <p class="video-caption">Joint tracking comparison during synchronized tap motions (thumb and index). RMSE and time delay annotated per joint.</p>
       </div>
@@ -537,29 +500,17 @@
 
       <div class="col-2">
         <div>
-          <!--
-            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/tactile_live.mp4"></video>
-          -->
           <div class="video-wrap">
-            <div class="vph">
-              <strong>Tactile Sensor Live Data</strong>
-              <p>7-taxel 히트맵 — 손가락으로 누를 때 각 센서 실시간 반응</p>
-              <code>static/videos/tactile_live.mp4</code>
-            </div>
+            <video autoplay muted loop playsinline>
+              <source src="static/videos/tactile_live.mp4" type="video/mp4">
+            </video>
           </div>
           <p class="video-caption">Real-time 7-taxel pressure map during fingertip contact</p>
         </div>
 
         <div>
-          <!--
-            ★ 교체: <img src="static/images/tactile_detail.png" alt="Tactile sensor">
-          -->
           <div class="img-wrap" style="margin-bottom: 0.8rem;">
-            <div class="img-ph">
-              <strong>Sensor Structure</strong>
-              <p>BMP384 배열 + Ecoflex-50 레이어 단면도</p>
-              <code>static/images/tactile_detail.png</code>
-            </div>
+            <img src="static/images/tactile_detail.png" alt="Tactile sensor">
           </div>
           <table class="spec">
             <tr><td>Sensing IC</td><td>BMP384 (Bosch Sensortec)</td></tr>
@@ -583,15 +534,8 @@
 
       <div class="col-2">
         <div>
-          <!--
-            ★ 교체: <img src="static/images/robot_hand.png" alt="Robot hand">
-          -->
           <div class="img-wrap">
-            <div class="img-ph">
-              <strong>Robot Hand Photo</strong>
-              <p>논문 Fig. 2(a) — 16-DoF 멀티센서 로봇핸드</p>
-              <code>static/images/robot_hand.png</code>
-            </div>
+            <img src="static/images/robot_hand.png" alt="Robot hand">
           </div>
           <p class="img-caption">16-DoF multi-sensory robotic hand with 60 tactile taxels and 12 kinesthetic sensors</p>
         </div>
@@ -620,15 +564,8 @@
   <div class="container">
     <h2>Force Transfer Mechanism</h2>
 
-    <!--
-      ★ 교체: <img src="static/images/pipeline.png" alt="Pipeline">
-    -->
     <div class="img-wrap" style="max-width:860px; margin: 0 auto 1.2rem;">
-      <div class="img-ph" style="aspect-ratio:16/5;">
-        <strong>Pipeline Figure</strong>
-        <p>논문 Fig. 5 — 데이터 수집 파이프라인 + Diffusion Policy + AFC</p>
-        <code>static/images/pipeline.png</code>
-      </div>
+      <img src="static/images/pipeline.png" alt="Pipeline">
     </div>
     <p class="img-caption" style="margin-bottom: 2rem;">Left: data acquisition with Force Generator. Right: Diffusion Policy with Adaptive Force Controller.</p>
 
@@ -678,28 +615,14 @@
     <!-- Experiment setup -->
     <div class="col-2" style="margin-bottom: 2.5rem;">
       <div>
-        <!--
-          ★ 교체: <img src="static/images/experiment_setup.png" alt="Setup">
-        -->
         <div class="img-wrap">
-          <div class="img-ph">
-            <strong>Experiment Setup</strong>
-            <p>로봇핸드 + 전구소켓 + 6축 F/T + RGB 카메라 (Fig. 7a)</p>
-            <code>static/images/experiment_setup.png</code>
-          </div>
+          <img src="static/images/experiment_setup.png" alt="Setup">
         </div>
         <p class="img-caption">Setup: RGB camera tracks bulb angle; 6-axis F/T sensor logs applied forces</p>
       </div>
       <div>
-        <!--
-          ★ 교체: <img src="static/images/torque_plot.png" alt="Torque profile">
-        -->
         <div class="img-wrap">
-          <div class="img-ph">
-            <strong>Torque & Rotation Profile</strong>
-            <p>Z-axis torque + 누적 회전각 그래프 (Fig. 7b)</p>
-            <code>static/images/torque_plot.png</code>
-          </div>
+          <img src="static/images/torque_plot.png" alt="Torque profile">
         </div>
         <p class="img-caption">AFC kicks in as friction increases past 300°, maintaining rotation through the high-friction phase</p>
       </div>
@@ -711,15 +634,10 @@
         <h3>DexFIT Deployment (FG + AFC)</h3>
         <p>100% success rate — autonomous light bulb rotation with force-informed policy and adaptive force control.</p>
       </div>
-      <!--
-        ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/dexfit_deploy.mp4"></video>
-      -->
       <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
-        <div class="vph">
-          <strong>DexFIT Autonomous Deployment</strong>
-          <p>FG + AFC 조합 — 100% 성공 (5/5)</p>
-          <code>static/videos/dexfit_deploy.mp4</code>
-        </div>
+        <video autoplay muted loop playsinline>
+          <source src="static/videos/dexfit_deploy.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
 
@@ -733,45 +651,30 @@
       <div class="col-3">
         <div>
           <p class="ab-label">Teleoperation (no contact)</p>
-          <!--
-            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/teleop_only.mp4"></video>
-          -->
           <div class="video-wrap">
-            <div class="vph">
-              <strong>Teleoperation</strong>
-              <p>공중에서 제스처 — 전구 접촉 없음</p>
-              <code>teleop_only.mp4</code>
-            </div>
+            <video autoplay muted loop playsinline>
+              <source src="static/videos/teleop_only.mp4" type="video/mp4">
+            </video>
           </div>
           <p class="video-caption">10/21 success during collection. Policy fails at deployment (0/5).</p>
         </div>
 
         <div>
           <p class="ab-label">Contact (FG off)</p>
-          <!--
-            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/contact_no_fg.mp4"></video>
-          -->
           <div class="video-wrap">
-            <div class="vph">
-              <strong>Contact Teleoperation</strong>
-              <p>접촉은 있지만 Force Generation 비활성</p>
-              <code>contact_no_fg.mp4</code>
-            </div>
+            <video autoplay muted loop playsinline>
+              <source src="static/videos/contact_no_fg.mp4" type="video/mp4">
+            </video>
           </div>
           <p class="video-caption">Position-only transfer. Policy achieves only 20% success (1/5) without AFC.</p>
         </div>
 
         <div>
           <p class="ab-label" style="color:#1a56db;">FG Teleoperation (Ours)</p>
-          <!--
-            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/fg_teleop.mp4"></video>
-          -->
           <div class="video-wrap">
-            <div class="vph">
-              <strong>FG Teleoperation</strong>
-              <p>촉각→힘 변환 활성 — 로봇이 꽉 잡으며 회전</p>
-              <code>fg_teleop.mp4</code>
-            </div>
+            <video autoplay muted loop playsinline>
+              <source src="static/videos/fg_teleop.mp4" type="video/mp4">
+            </video>
           </div>
           <p class="video-caption">26.24 s avg, 15.07 deg/s. Force-informed policy achieves 100% success.</p>
         </div>
@@ -788,30 +691,20 @@
       <div class="col-2">
         <div>
           <p class="ab-label">FG Teleoperation — AFC off</p>
-          <!--
-            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/fg_no_afc.mp4"></video>
-          -->
           <div class="video-wrap">
-            <div class="vph">
-              <strong>FG, no AFC</strong>
-              <p>300° 이후 마찰 증가 시 힘 부족으로 종종 멈춤</p>
-              <code>fg_no_afc.mp4</code>
-            </div>
+            <video autoplay muted loop playsinline>
+              <source src="static/videos/fg_no_afc.mp4" type="video/mp4">
+            </video>
           </div>
           <p class="video-caption">100% success, but slower (31.48 s) — stalls occasionally near end.</p>
         </div>
 
         <div>
           <p class="ab-label" style="color:#1a56db;">DexFIT (FG + AFC) — Ours</p>
-          <!--
-            ★ 교체: <video autoplay muted loop playsinline><source src="static/videos/fg_with_afc.mp4"></video>
-          -->
           <div class="video-wrap">
-            <div class="vph">
-              <strong>FG + AFC</strong>
-              <p>300° 이후 AFC가 추가 힘 공급 → 부드럽게 완료</p>
-              <code>fg_with_afc.mp4</code>
-            </div>
+            <video autoplay muted loop playsinline>
+              <source src="static/videos/fg_with_afc.mp4" type="video/mp4">
+            </video>
           </div>
           <p class="video-caption">100% success, 26.45 s, 9.107 deg/s — best overall efficiency.</p>
         </div>
