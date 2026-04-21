@@ -150,7 +150,7 @@
     }
 
     /* ═══════════════════════════════════════
-       VIDEO
+       VIDEO / GIF
     ═══════════════════════════════════════ */
     .video-wrap {
       position: relative;
@@ -162,7 +162,8 @@
       border: 1px solid #e0e0e0;
     }
     .video-wrap video,
-    .video-wrap iframe {
+    .video-wrap iframe,
+    .video-wrap img {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -374,21 +375,22 @@
 </h1>
 
     <p class="authors">Anonymous Author(s)</p>
-    <p class="affiliations">Anonymous Institution(s)</p>
-<!-- 
+    <p class="affiliations">Under Double-Blind Review · Submitted to IROS 2026</p>
+
     <div class="link-buttons">
-      <a href="paper.pdf" class="link-btn">
-        <span class="icon">📄</span> Paper
-      </a>
       <a href="https://anonymous.4open.science/r/DexFIT-478C/" class="link-btn">
-        <span class="icon">💻</span> Code
+        <span class="icon">💻</span> Anonymous Code
       </a>
-    </div> -->
+    </div>
 
     <div class="teaser-wrap">
       <div class="img-wrap">
         <img src="static/images/teaser.png" alt="DexFIT overview">
       </div>
+      <p class="img-caption">
+        DexFIT enables real-time contact force transfer via a kinematically isomorphic glove during data collection,
+        and achieves stable autonomous manipulation by integrating a Diffusion Policy with an Adaptive Force Control (AFC) module.
+      </p>
     </div>
 
   </div>
@@ -415,29 +417,31 @@
         the operator's fingertips into supplementary joint angle commands, enabling the robot hand to generate
         contact forces proportional to the human's applied pressure. For autonomous deployment, an
         <strong>Adaptive Force Control (AFC)</strong> module monitors task progress via the robot's onboard
-        tactile sensors and dynamically adjusts grasp forces. We trained a vision-free Diffusion Policy on
-        the collected proprioceptive data and evaluated the system on a light bulb rotation task.
-        Experimental results show that DexFIT achieves a <strong>100% task completion rate</strong> in its
-        optimal configuration, with a 34.5% reduction in task completion time and 16% reduction in energy
-        consumption compared to position-only isomorphic control.
+        tactile sensors and dynamically adjusts grasp forces. We train a vision-free Diffusion Policy on
+        collected proprioceptive data (joint positions, kinesthetic sensors, and tactile signals) and evaluate
+        the system on an in-hand light bulb rotation task. DexFIT achieves a
+        <strong>100% task completion rate</strong> in its optimal configuration, with a 34.5% reduction in task
+        completion time and 16% reduction in energy consumption compared to position-only isomorphic control.
       </p>
     </div>
   </div>
 </section>
 
 <!-- ════════════════════════════════════
-     MAIN DEMO VIDEO
+     OVERVIEW GIF
 ════════════════════════════════════ -->
 <section>
   <div class="container">
-    <h2>Introduction to DexFIT</h2>
+    <h2>System Overview</h2>
+    <p style="text-align:center; color:#666; font-size:0.92rem; max-width:720px; margin: 0 auto 1.8rem;">
+      A kinematically isomorphic wearable glove with integrated fingertip tactile sensors transfers
+      both joint angles and contact forces from the operator to the robot hand in real-time.
+    </p>
 
     <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
-      <video autoplay muted loop playsinline>
-        <source src="static/videos/overview.mp4" type="video/mp4">
-      </video>
+      <img src="static/gifs/overview.gif" alt="DexFIT system overview" loading="eager">
     </div>
-    <p class="video-caption">Full system demonstration: data collection with Force Generation and autonomous deployment with Adaptive Force Control.</p>
+    <p class="video-caption">DexFIT concept: isomorphic joint transfer + tactile-driven contact force generation.</p>
   </div>
 </section>
 
@@ -466,46 +470,38 @@
         <div>
           <table class="spec">
             <tr><td>DoF</td><td>16 (4 fingers × 4)</td></tr>
-            <tr><td>Joint encoder</td><td>Alps RDC506018A (potentiometer)</td></tr>
-            <tr><td>ADC resolution</td><td>12-bit MCP3208 (~0.08°)</td></tr>
+            <tr><td>Joint encoder</td><td>Rotary potentiometer</td></tr>
+            <tr><td>ADC resolution</td><td>12-bit (~0.08°/cnt)</td></tr>
             <tr><td>Angle accuracy</td><td>R²=0.998, RMSE=2.59°</td></tr>
-            <tr><td>Tactile modules</td><td>3 fingers × 7 BMP384</td></tr>
+            <tr><td>Tactile modules</td><td>3 fingers × 7 barometric taxels</td></tr>
             <tr><td>Cover material</td><td>Ecoflex-50, 3 mm</td></tr>
             <tr><td>Update rate</td><td>90 Hz (SPI)</td></tr>
-            <tr><td>MCU</td><td>ATmega2560</td></tr>
-            <tr><td>Weight</td><td>~180 g</td></tr>
             <tr><td>Joint range</td><td>−5° to +95° (hard stop)</td></tr>
             <tr><td>Link material</td><td>PLA + Onyx nylon composite</td></tr>
+            <tr><td>Weight</td><td>~180 g</td></tr>
           </table>
         </div>
-      </div>
-
-      <!-- Joint tracking video -->
-      <div style="margin-top: 1.5rem;">
-        <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
-          <video autoplay muted loop playsinline>
-            <source src="static/videos/joint_tracking.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="video-caption">Joint tracking comparison during synchronized tap motions (thumb and index). RMSE and time delay annotated per joint.</p>
       </div>
     </div>
 
     <!-- Tactile Sensor -->
     <div class="task-block">
       <div class="task-header">
-        <h3>Fingertip Tactile Sensor</h3>
-        <p>Barometric tactile modules on 3 fingertips (thumb, index, middle). 7 taxels each, flexible PCB, Ecoflex-50 cover.</p>
+        <h3>Fingertip Tactile Sensor (21 Taxels)</h3>
+        <p>Barometric tactile modules on 3 fingertips (thumb, index, middle). 7 taxels each on flexible PCB, covered with 3 mm Ecoflex-50 and a thin PLA plate to reduce the soft-cover dead zone.</p>
       </div>
 
       <div class="col-2">
         <div>
           <div class="video-wrap">
-            <video autoplay muted loop playsinline>
-              <source src="static/videos/tactile_live.mp4" type="video/mp4">
-            </video>
+            <img src="static/gifs/tactile_live.gif" alt="Real-time tactile pressure map" loading="lazy">
           </div>
-          <p class="video-caption">Real-time 7-taxel pressure map during fingertip contact</p>
+          <p class="video-caption">Real-time 7-taxel pressure map during fingertip contact (per finger)</p>
+
+          <div class="video-wrap" style="margin-top: 0.8rem;">
+            <img src="static/gifs/tactile_pressure_map.gif" alt="Tactile pressure map visualization" loading="lazy">
+          </div>
+          <p class="video-caption">Aggregated pressure map across thumb, index, and middle fingertips</p>
         </div>
 
         <div>
@@ -513,12 +509,14 @@
             <img src="static/images/tactile_detail.png" alt="Tactile sensor">
           </div>
           <table class="spec">
-            <tr><td>Sensing IC</td><td>BMP384 (Bosch Sensortec)</td></tr>
+            <tr><td>Sensing IC</td><td>Barometric pressure sensor</td></tr>
             <tr><td>Principle</td><td>Piezoresistive barometric</td></tr>
             <tr><td>Taxels per finger</td><td>7 (7 mm spacing)</td></tr>
-            <tr><td>Cover</td><td>Ecoflex-50, 3 mm thick</td></tr>
+            <tr><td>Total taxels</td><td>21 (3 fingers)</td></tr>
+            <tr><td>Cover</td><td>Ecoflex-50, 3 mm + PLA plate</td></tr>
+            <tr><td>Force range</td><td>0 – 6 N</td></tr>
+            <tr><td>Repeatability RMSE</td><td>0.064 N</td></tr>
             <tr><td>Response time</td><td>&lt;50 ms (47 ms measured)</td></tr>
-            <tr><td>Force range</td><td>0–6.2 N</td></tr>
             <tr><td>PCB type</td><td>Flexible PCB</td></tr>
           </table>
         </div>
@@ -529,7 +527,7 @@
     <div class="task-block" style="margin-bottom: 0;">
       <div class="task-header">
         <h3>Multi-Sensory Robot Hand</h3>
-        <p>16-DoF, 60 barometric tactile taxels, 12 kinesthetic F/T sensors, magnetic encoders. EtherCAT @ 1 kHz.</p>
+        <p>16-DoF robot hand with 60 barometric tactile taxels, 12 kinesthetic force/torque sensors, and magnetic encoders. EtherCAT communication at up to 1 kHz.</p>
       </div>
 
       <div class="col-2">
@@ -564,10 +562,13 @@
   <div class="container">
     <h2>Force Transfer Mechanism</h2>
 
-    <div class="img-wrap" style="max-width:860px; margin: 0 auto 1.2rem;">
-      <img src="static/images/pipeline.png" alt="Pipeline">
+    <div class="img-wrap" style="max-width:920px; margin: 0 auto 1.2rem; background:#000;">
+      <img src="static/images/framework.png" alt="DexFIT framework">
     </div>
-    <p class="img-caption" style="margin-bottom: 2rem;">Left: data acquisition with Force Generator. Right: Diffusion Policy with Adaptive Force Controller.</p>
+    <p class="img-caption" style="margin-bottom: 2.5rem;">
+      Left: data acquisition pipeline with Force Generator producing supplementary angle commands from tactile readings.
+      Right: vision-free Diffusion Policy with Adaptive Force Controller at deployment.
+    </p>
 
     <div class="col-2">
       <div>
@@ -575,28 +576,41 @@
         <p style="font-size:0.92rem; color:#444;">
           When the operator contacts an object, the maximum taxel reading across 7 sensors drives additional
           joint flexion on the robot hand. The robot squeezes harder than the glove angle dictates —
-          generating contact forces proportional to applied human pressure.
+          generating measurable contact forces proportional to the operator's applied pressure.
         </p>
         <p style="font-size:0.88rem; color:#666; font-family:'Courier New',monospace; background:#f8f8f8; padding:0.7rem 1rem; border-radius:6px; border:1px solid #e0e0e0; margin-top:0.8rem;">
-          θ_cmd = θ_glove + K_j · (T_f / T_scale)<br>
+          θ<sub>j,cmd</sub> = θ<sub>j,glove</sub> + K<sub>j</sub> · (T<sub>f</sub> / T<sub>scale</sub>)<br>
           K = 30 (DIP/PIP),  K = 15 (MCP)<br>
-          RMSE = 0.63 N,  Pearson r &gt; 0.93
+          3-finger avg. RMSE = 0.63 N,  Pearson r &gt; 0.93
         </p>
       </div>
 
       <div>
         <h3>② Adaptive Force Control (Deployment)</h3>
         <p style="font-size:0.92rem; color:#444;">
-          At inference, the robot's onboard tactile sensors detect stalls. A velocity controller increases
-          DIP joint flexion when rotation slows, compensating for the increasing friction beyond 300° of
-          bulb rotation.
+          At inference, the robot's onboard tactile sensors detect contact and the bulb rotation velocity is
+          monitored. When rotation stalls, a velocity-based controller increases DIP joint flexion on
+          contacting fingers, compensating for the increasing friction beyond 300° of bulb rotation.
         </p>
         <p style="font-size:0.88rem; color:#666; font-family:'Courier New',monospace; background:#f8f8f8; padding:0.7rem 1rem; border-radius:6px; border:1px solid #e0e0e0; margin-top:0.8rem;">
-          e_ω = clip(10 − ω, −10, 10)<br>
-          g_AFC = max(0, e_ω / 10 · G_max)<br>
-          G_max = 500 encoder counts
+          e<sub>ω</sub> = clip(10 − ω, −10, 10)<br>
+          g<sub>AFC</sub> = max(0, e<sub>ω</sub> / 10 · G<sub>max</sub>)<br>
+          G<sub>max</sub> = 500 encoder counts
         </p>
       </div>
+    </div>
+
+    <!-- Force calibration -->
+    <div class="task-block" style="margin-top: 2.5rem; margin-bottom: 0;">
+      <div class="task-header">
+        <h3>FG Gain Calibration</h3>
+        <p>Per-joint gain K swept over {5, 10, 20, 30, 40, 50} with dual 6-axis F/T sensors. K = 30 minimizes RMSE between human and robot contact force.</p>
+      </div>
+
+      <div class="img-wrap" style="max-width:820px; margin: 0 auto; background:#000;">
+        <img src="static/gifs/force_calibration.gif" alt="Force reproduction calibration" loading="lazy" style="width:100%; height:auto; display:block;">
+      </div>
+      <p class="video-caption">Force reproduction experiment with dual 6-axis F/T sensors; RMSE minimized at K = 30.</p>
     </div>
   </div>
 </section>
@@ -606,10 +620,11 @@
 ════════════════════════════════════ -->
 <section>
   <div class="container">
-    <h2>Experiment: Light Bulb Rotation</h2>
-    <p style="text-align:center; color:#666; font-size:0.92rem; max-width:640px; margin: 0 auto 2.5rem;">
-      In-hand rotation task: reach 300° cumulative rotation within 60 s against increasing socket friction.
-      Vision-free. 5 trials per condition, 10 demonstrations each.
+    <h2>Experiment: In-Hand Light Bulb Rotation</h2>
+    <p style="text-align:center; color:#666; font-size:0.92rem; max-width:720px; margin: 0 auto 2.5rem;">
+      In-hand rotation task: reach 300° cumulative rotation within 60 s against progressively increasing socket
+      friction (bulb fully locks at ≈ 450°). Vision-free; robot arm locked in a fixed pose. 5 trials per
+      condition, 10 demonstrations each.
     </p>
 
     <!-- Experiment setup -->
@@ -618,101 +633,129 @@
         <div class="img-wrap">
           <img src="static/images/experiment_setup.png" alt="Setup">
         </div>
-        <p class="img-caption">Setup: RGB camera tracks bulb angle; 6-axis F/T sensor logs applied forces</p>
+        <p class="img-caption">Setup: RGB camera tracks bulb angle; 6-axis F/T sensor under the socket logs applied forces.</p>
       </div>
       <div>
         <div class="img-wrap">
           <img src="static/images/torque_plot.png" alt="Torque profile">
         </div>
-        <p class="img-caption">AFC kicks in as friction increases past 300°, maintaining rotation through the high-friction phase</p>
+        <p class="img-caption">AFC kicks in as friction increases past 300°, maintaining rotation through the high-friction phase.</p>
       </div>
     </div>
 
-    <!-- DexFIT demo video -->
+    <!-- ────────── DATA COLLECTION ABLATION ────────── -->
     <div class="task-block">
       <div class="task-header">
-        <h3>DexFIT Deployment (FG + AFC)</h3>
-        <p>100% success rate — autonomous light bulb rotation with force-informed policy and adaptive force control.</p>
-      </div>
-      <div class="video-wrap" style="max-width:820px; margin: 0 auto;">
-        <video autoplay muted loop playsinline>
-          <source src="static/videos/dexfit_deploy.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
-    <!-- Ablation side-by-side -->
-    <div class="task-block">
-      <div class="task-header">
-        <h3>Ablation: Data Collection Modes</h3>
-        <p>Three teleoperation conditions compared side-by-side during data collection.</p>
+        <h3>Ablation 1 — Data Collection Modes</h3>
+        <p>
+          Comparing teleoperation conditions during data collection. Force Generation (FG) lifts the speed-matching
+          score from 40.69% to 48.53% and reduces the average success time by 21.6%.
+        </p>
       </div>
 
-      <div class="col-3">
+      <div class="col-2">
         <div>
-          <p class="ab-label">Teleoperation (no contact)</p>
+          <p class="ab-label">Teleoperation (free space)</p>
           <div class="video-wrap">
-            <video autoplay muted loop playsinline>
-              <source src="static/videos/teleop_only.mp4" type="video/mp4">
-            </video>
+            <img src="static/gifs/teleop_only.gif" alt="Teleoperation data collection" loading="lazy">
           </div>
-          <p class="video-caption">10/21 success during collection. Policy fails at deployment (0/5).</p>
-        </div>
-
-        <div>
-          <p class="ab-label">Contact (FG off)</p>
-          <div class="video-wrap">
-            <video autoplay muted loop playsinline>
-              <source src="static/videos/contact_no_fg.mp4" type="video/mp4">
-            </video>
-          </div>
-          <p class="video-caption">Position-only transfer. Policy achieves only 20% success (1/5) without AFC.</p>
+          <p class="video-caption">
+            10/21 successes · 33.35 s avg. · No physical contact. Trajectories do not encode bulb position/shape.
+          </p>
         </div>
 
         <div>
           <p class="ab-label" style="color:#1a56db;">FG Teleoperation (Ours)</p>
           <div class="video-wrap">
-            <video autoplay muted loop playsinline>
-              <source src="static/videos/fg_teleop.mp4" type="video/mp4">
-            </video>
+            <img src="static/gifs/fg_teleop.gif" alt="FG teleoperation data collection" loading="lazy">
           </div>
-          <p class="video-caption">26.24 s avg, 15.07 deg/s. Force-informed policy achieves 100% success.</p>
+          <p class="video-caption">
+            10/13 successes · 26.24 s avg. · 15.07 deg/s · Tactile-driven force transfer matches human intent.
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Ablation AFC -->
+    <!-- ────────── DEPLOYMENT ABLATION ────────── -->
     <div class="task-block">
       <div class="task-header">
-        <h3>Ablation: Adaptive Force Control at Deployment</h3>
-        <p>Comparing deployment with and without AFC on force-informed data.</p>
+        <h3>Ablation 2 — Policy Deployment (Position-only vs. DexFIT)</h3>
+        <p>
+          A vision-free Diffusion Policy trained on position-only demonstrations fails to produce sufficient grasp
+          force. Force-informed demonstrations (DexFIT) yield a policy that inherently applies appropriate forces.
+        </p>
       </div>
 
       <div class="col-2">
         <div>
-          <p class="ab-label">FG Teleoperation — AFC off</p>
+          <p class="ab-label">Contact Teleop (FG off, AFC off)</p>
           <div class="video-wrap">
-            <video autoplay muted loop playsinline>
-              <source src="static/videos/fg_no_afc.mp4" type="video/mp4">
-            </video>
+            <div class="vph">
+              <strong>Video coming soon</strong>
+              <span>Deployment with position-only demonstrations</span>
+            </div>
           </div>
-          <p class="video-caption">100% success, but slower (31.48 s) — stalls occasionally near end.</p>
+          <p class="video-caption">
+            20% success (1/5) · Rubs against the bulb surface without generating sufficient friction to rotate it.
+          </p>
         </div>
 
         <div>
-          <p class="ab-label" style="color:#1a56db;">DexFIT (FG + AFC) — Ours</p>
+          <p class="ab-label" style="color:#1a56db;">DexFIT — FG + AFC (Ours)</p>
           <div class="video-wrap">
-            <video autoplay muted loop playsinline>
-              <source src="static/videos/fg_with_afc.mp4" type="video/mp4">
-            </video>
+            <div class="vph">
+              <strong>Video coming soon</strong>
+              <span>Deployment with force-informed policy + AFC</span>
+            </div>
           </div>
-          <p class="video-caption">100% success, 26.45 s, 9.107 deg/s — best overall efficiency.</p>
+          <p class="video-caption">
+            100% success · 26.45 s · 9.107 deg/s · Lowest energy consumption (479.9 kJ).
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Results Table -->
+    <!-- ────────── AFC ABLATION ────────── -->
+    <div class="task-block">
+      <div class="task-header">
+        <h3>Ablation 3 — Adaptive Force Control at Deployment</h3>
+        <p>With FG-trained policy, AFC further shortens completion time by 16% and reduces energy consumption by 12%.</p>
+      </div>
+
+      <div class="col-2">
+        <div>
+          <p class="ab-label">FG Teleop — AFC off</p>
+          <div class="video-wrap">
+            <div class="vph">
+              <strong>Video coming soon</strong>
+              <span>FG-trained policy without AFC</span>
+            </div>
+          </div>
+          <p class="video-caption">
+            100% success · 31.48 s · 7.366 deg/s · Stalls near the high-friction phase.
+          </p>
+        </div>
+
+        <div>
+          <p class="ab-label" style="color:#1a56db;">DexFIT — FG + AFC (Ours)</p>
+          <div class="video-wrap">
+            <div class="vph">
+              <strong>Video coming soon</strong>
+              <span>FG-trained policy + AFC at deployment</span>
+            </div>
+          </div>
+          <p class="video-caption">
+            100% success · 26.45 s · 9.107 deg/s · AFC detects stalls and supplies extra DIP flexion.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ────────── RESULTS TABLE ────────── -->
     <h3 style="margin-bottom: 0.8rem;">Quantitative Results</h3>
+    <p style="font-size:0.88rem; color:#666; margin-bottom: 0.6rem;">
+      Ablation of DexFIT components on the light bulb rotation task (5 trials per condition, 10 demonstrations each).
+    </p>
     <div class="table-wrap">
       <table class="result">
         <thead>
@@ -729,27 +772,27 @@
         </thead>
         <tbody>
           <tr>
-            <td>Teleoperation</td>
+            <td>Teleop. (AFC off)</td>
             <td class="no mono">✗</td><td class="no mono">✗</td><td class="no mono">✗</td>
             <td class="no mono">0</td><td class="mono">—</td><td class="mono">1.186</td><td class="mono">—</td>
           </tr>
           <tr>
-            <td>Teleoperation (AFC)</td>
+            <td>Teleop. (AFC on)</td>
             <td class="no mono">✗</td><td class="no mono">✗</td><td class="ok mono">✓</td>
             <td class="no mono">0</td><td class="mono">—</td><td class="mono">3.881</td><td class="mono">—</td>
           </tr>
           <tr>
-            <td>Contact (AFC off)</td>
+            <td>Contact Teleop. (AFC off)</td>
             <td class="ok mono">✓</td><td class="no mono">✗</td><td class="no mono">✗</td>
             <td class="mono">20</td><td class="mono">40.39</td><td class="mono">4.374</td><td class="mono">571.2</td>
           </tr>
           <tr>
-            <td>Contact (AFC on)</td>
+            <td>Contact Teleop. (AFC on)</td>
             <td class="ok mono">✓</td><td class="no mono">✗</td><td class="ok mono">✓</td>
             <td class="mono">100</td><td class="mono">41.86</td><td class="mono">6.603</td><td class="mono">576.3</td>
           </tr>
           <tr>
-            <td>FG (AFC off)</td>
+            <td>FG Teleop. (AFC off)</td>
             <td class="ok mono">✓</td><td class="ok mono">✓</td><td class="no mono">✗</td>
             <td class="mono">100</td><td class="mono">31.48</td><td class="mono">7.366</td><td class="mono">543.9</td>
           </tr>
@@ -762,6 +805,42 @@
       </table>
     </div>
 
+    <p style="font-size:0.88rem; color:#555; margin-top: 0.6rem;">
+      <strong>Scaling (preliminary):</strong> Training DexFIT with 40 FG demonstrations (vs. 10) further reduces
+      task time to 24.22 s, lifts angular velocity to 11.34 deg/s, and cuts energy consumption to 432.4 kJ.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     CONCLUSION / FUTURE WORK
+════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Conclusion &amp; Future Work</h2>
+
+    <div class="col-2" style="align-items: center;">
+      <div>
+        <p style="font-size:0.95rem; color:#333;">
+          DexFIT demonstrates that explicit force generation — at both the data collection stage and the
+          deployment stage — is essential for contact-rich dexterous manipulation with multi-finger robot hands.
+          The kinematically isomorphic glove eliminates retargeting, and the tactile-driven force generation
+          produces demonstrations that a vision-free Diffusion Policy can directly exploit.
+        </p>
+        <p style="font-size:0.9rem; color:#555;">
+          <strong>Future work:</strong>
+          extend DexFIT to more contact-rich tasks (valve turning, screwdriver, pen manipulation), integrate
+          6-DoF arm motion for full-body manipulation, and investigate learned AFC gain tuning.
+        </p>
+      </div>
+
+      <div>
+        <div class="video-wrap">
+          <img src="static/gifs/future_work.gif" alt="Future work teaser" loading="lazy">
+        </div>
+        <p class="video-caption">Toward more contact-rich tasks and broader object generalization.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -769,7 +848,7 @@
      FOOTER
 ════════════════════════════════════ -->
 <footer>
-  <p>DexFIT · Anonymous Submission · <a href="https://anonymous.4open.science/r/DexFIT-478C/">Code</a></p>
+  <p>DexFIT · Anonymous Submission · Under Double-Blind Review</p>
 </footer>
 
 </body>
