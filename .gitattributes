@@ -1,2 +1,0 @@
-static/gifs/tactile_live.gif filter=lfs diff=lfs merge=lfs -text
-static/gifs/tactile_pressure_map.gif filter=lfs diff=lfs merge=lfs -text
