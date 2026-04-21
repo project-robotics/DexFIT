@@ -1,0 +1,4 @@
+# GIFs exceeding GitHub 100 MB hard file-size limit (push would be rejected).
+# Host these externally or use Git LFS if you need them on the live page.
+static/gifs/tactile_live.gif
+static/gifs/tactile_pressure_map.gif
